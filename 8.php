@@ -109,6 +109,44 @@ class Client extends Person{
     }
 }
 
+class Client_Bank_account extends Bank_account {
+    private $phone;
+    public function __construct($name, $age, $phone) {
+        parent::__construct($name, $age);
+        $this->setPhone($phone);
+    }
+    public function setPhone($phone) {
+        if (is_string($phone)) {
+            $this->phone = $phone;
+        }
+        else {
+            echo "Bad phone\n";
+        }
+    }
+    public function getPhone() : int {
+        return $this->phone;
+    }
+}
+
+class Supplier_Bank_account extends Bank_account {
+    private $account;
+    public function __construct($name, $age, $account) {
+        parent::__construct($name, $age);
+        $this->setAccount($account);
+    }
+    public function setAccount($account) {
+        if (is_numeric($account)) {
+            $this->account = $account;
+        }
+        else {
+            echo "Bad account\n";
+        }
+    }
+    public function getAccount() : int {
+        return $this->account;
+    }
+}
+
 $Tim = new Person("Tim", 21);
 echo $Tim->getName(),' ', $Tim->getAge(), "\n";
 

@@ -23,7 +23,11 @@ ORDER BY nomenclatures.id, barcodes.code; ';
 
 // Выведем результат
 $query = $pdo->query($sql);
+$myfile = fopen("out.txt", "w");
 echo "Код номенклатуры\tШтрих-коды\n";
 while($row = $query->fetch(PDO::FETCH_OBJ)) {
-    echo $row->id, "\t", $row->code, "\n";
+    $txt = $row->id . "\t" . $row->code .  "\n";
+    fwrite($myfile, $txt);
+    echo $txt;
 }
+fclose($myfile);
